@@ -32,6 +32,7 @@ class Player():
         self.name = name
         self.balance = balance
         self.hand = []
+        self.aces = 0
 
     def value_hand(self):
         hand_val = 0
@@ -39,10 +40,15 @@ class Player():
             if card == 'J' or card == 'Q' or card == 'K':
                 hand_val += 10
             elif card == 'A':
-                hand_val += 1
+                hand_val += 11
+                self.aces = 1
             else:
                 hand_val += card
-        
+            
+            if self.aces > 0 and hand_val > 21:
+                hand_val -= 10
+                self.aces = 0
+
         return hand_val
 
 
