@@ -1,11 +1,10 @@
 '''
-This is ablack jacl game of user agains computer
-Need to Insert Name and the bettt
-
+This is a blackjack game of user agains computer
+In This version there are no considuration of the cards type (Hart, Dymod, etc')
+Need to Insert Player name it amount of mony and start to play.
+computer will always add card if its less than 17
 '''
 import random
-
-
 
 class Pac():
     def __init__(self):
