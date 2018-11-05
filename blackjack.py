@@ -73,11 +73,13 @@ def get_check_int (text):
     return intval
         
 
+### Main Entery ###
 
+# Creating Pack
 mypack = Pac()
-
+# Getting Player Name
 player_name = str(input('Please Enter your name: '))
-
+# Getting Deposit Value (Must Be an integer)
 while True:
     player_depo = get_check_int('Please Enter your Deposit: ')
     if player_depo <= 10000:
@@ -88,14 +90,13 @@ while True:
 
 # creating Player 1 Object
 player1 = Player(player_name, player_depo)
-#print(player1.name, player1.balance)
 
 # Creating Computer Object
 complayer = Player('Computer')
 
-# Game on while True
+# Starting the game. Game is on while True
 while True:
-    # Placing Bet - Bet Not OK while true,
+    # Placing Bet (Bet is not OK while true)
     while True:
         player_bet = get_check_int('Please place your bet: ')
         if player_bet <= player1.balance:
@@ -105,20 +106,20 @@ while True:
         else:
             print('Your balance is lower than the bet!')
             continue
-
+    # Phase 1: Player 1 is getting the Cards and showing them
     player1.hand.append(mypack.pull_card())
     player1.hand.append(mypack.pull_card())
     print(player1.name, player1.balance, player1.hand, player1.value_hand())
-    
+    # Computer is getting 1 card and the secon card is currentlu unknown.
     complayer.hand.append(mypack.pull_card())
     complayer.hand.append('X')
     print(complayer.name, complayer.balance, complayer.hand)
 
-    # Player 1 pool from Pac while True
+    # Phase 2: Player 1 plays amd pool from Pac while True
     while True:
         if player1.value_hand() <= 21:
             move =  input('Do you want another card? Choose Y or N:')
-            if move == 'Y' or move == 'y':
+            if move.upper() == 'Y':
                 player1.hand.append(mypack.pull_card())
                 print(f'Hand: {player1.hand}. Hand Value is: {player1.value_hand()}')
                 continue
@@ -151,7 +152,7 @@ while True:
         print(f'{player1.name} you lost {player_bet}$ !!! Yor Balance now is {player1.balance}')
 
 
-    if input('Do you want to play again? Y or N:') == 'y':
+    if (input('Do you want to play again? Y or N:')).upper() == 'Y':
         complayer.hand = []
         player1.hand = []
         continue
